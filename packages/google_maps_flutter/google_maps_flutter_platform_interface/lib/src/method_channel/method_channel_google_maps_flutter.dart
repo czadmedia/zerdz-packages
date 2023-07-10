@@ -598,6 +598,7 @@ class MethodChannelGoogleMapsFlutter extends GoogleMapsFlutterPlatform {
     Set<Polyline> polylines = const <Polyline>{},
     Set<Circle> circles = const <Circle>{},
     Set<TileOverlay> tileOverlays = const <TileOverlay>{},
+    Set<GroundOverlay> groundOverlays = const <GroundOverlay>{},
     Set<Factory<OneSequenceGestureRecognizer>>? gestureRecognizers,
     Map<String, dynamic> mapOptions = const <String, dynamic>{},
   }) {
@@ -627,6 +628,7 @@ class MethodChannelGoogleMapsFlutter extends GoogleMapsFlutterPlatform {
     Set<Polyline> polylines = const <Polyline>{},
     Set<Circle> circles = const <Circle>{},
     Set<TileOverlay> tileOverlays = const <TileOverlay>{},
+    Set<GroundOverlay> groundOverlays = const <GroundOverlay>{},
     Set<Factory<OneSequenceGestureRecognizer>>? gestureRecognizers,
     Map<String, dynamic> mapOptions = const <String, dynamic>{},
   }) {

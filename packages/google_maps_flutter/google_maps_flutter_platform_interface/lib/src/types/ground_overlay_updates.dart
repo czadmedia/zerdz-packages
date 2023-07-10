@@ -4,6 +4,7 @@
 
 import 'dart:ui' show hashValues;
 
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart' show setEquals;
 import 'package:google_maps_flutter_platform_interface/src/types/ground_overlay.dart';
 
@@ -16,7 +17,8 @@ import 'utils/ground_overlay.dart';
 // (Do not re-export)
 class GroundOverlayUpdates {
   /// Computes [GroundOverlayUpdates] given previous and current [GroundOverlay]s.
-  GroundOverlayUpdates.from(Set<GroundOverlay> previous, Set<GroundOverlay> current) {
+  GroundOverlayUpdates.from(
+      Set<GroundOverlay> previous, Set<GroundOverlay> current) {
     if (previous == null) {
       previous = Set<GroundOverlay>.identity();
     }
@@ -25,36 +27,47 @@ class GroundOverlayUpdates {
       current = Set<GroundOverlay>.identity();
     }
 
-    final Map<GroundOverlayId, GroundOverlay> previousGroundOverlays = keyByGroundOverlayId(previous);
-    final Map<GroundOverlayId, GroundOverlay> currentGroundOverlays = keyByGroundOverlayId(current);
+    final Map<GroundOverlayId, GroundOverlay> previousGroundOverlays =
+        keyByGroundOverlayId(previous);
+    final Map<GroundOverlayId, GroundOverlay> currentGroundOverlays =
+        keyByGroundOverlayId(current);
 
-    final Set<GroundOverlayId> prevGroundOverlayIds = previousGroundOverlays.keys.toSet();
-    final Set<GroundOverlayId> currentGroundOverlayIds = currentGroundOverlays.keys.toSet();
+    final Set<GroundOverlayId> prevGroundOverlayIds =
+        previousGroundOverlays.keys.toSet();
+    final Set<GroundOverlayId> currentGroundOverlayIds =
+        currentGroundOverlays.keys.toSet();
 
-    GroundOverlay idToCurrentGroundOverlay(GroundOverlayId id) {
+    GroundOverlay? idToCurrentGroundOverlay(GroundOverlayId id) {
       return currentGroundOverlays[id];
     }
 
     final Set<GroundOverlayId> _groundOverlayIdsToRemove =
-    prevGroundOverlayIds.difference(currentGroundOverlayIds);
+        prevGroundOverlayIds.difference(currentGroundOverlayIds);
 
     final Set<GroundOverlay> _groundOverlaysToAdd = currentGroundOverlayIds
         .difference(prevGroundOverlayIds)
         .map(idToCurrentGroundOverlay)
+        .whereNotNull()
         .toSet();
-
 
     /// Returns `true` if [current] is not equals to previous one with the
     /// same id.
-    bool hasChanged(GroundOverlay current) {
-      final GroundOverlay previous = previousGroundOverlays[current.groundOverlayId];
-      return current != previous;
+    bool hasChanged(GroundOverlay? current) {
+      final _current = current;
+
+      if (_current == null) {
+        return false;
+      }
+
+      final previous = previousGroundOverlays[_current.groundOverlayId];
+      return _current != previous;
     }
 
     final Set<GroundOverlay> _groundOverlaysToChange = currentGroundOverlayIds
         .intersection(prevGroundOverlayIds)
         .map(idToCurrentGroundOverlay)
         .where(hasChanged)
+        .whereNotNull()
         .toSet();
 
     groundOverlaysToAdd = _groundOverlaysToAdd;
@@ -63,13 +76,13 @@ class GroundOverlayUpdates {
   }
 
   /// Set of GroundOverlays to be added in this update.
-  Set<GroundOverlay> groundOverlaysToAdd;
+  late Set<GroundOverlay> groundOverlaysToAdd;
 
   /// Set of GroundOverlayIds to be removed in this update.
-  Set<GroundOverlayId> groundOverlayIdsToRemove;
+  late Set<GroundOverlayId> groundOverlayIdsToRemove;
 
   /// Set of GroundOverlays to be changed in this update.
-  Set<GroundOverlay> groundOverlaysToChange;
+  late Set<GroundOverlay> groundOverlaysToChange;
 
   /// Converts this object to something serializable in JSON.
   Map<String, dynamic> toJson() {
@@ -81,10 +94,15 @@ class GroundOverlayUpdates {
       }
     }
 
-    addIfNonNull('groundOverlaysToAdd', serializeGroundOverlaySet(groundOverlaysToAdd));
-    addIfNonNull('groundOverlaysToChange', serializeGroundOverlaySet(groundOverlaysToChange));
-    addIfNonNull('groundOverlayIdsToRemove',
-        groundOverlayIdsToRemove.map<dynamic>((GroundOverlayId m) => m.value).toList());
+    addIfNonNull(
+        'groundOverlaysToAdd', serializeGroundOverlaySet(groundOverlaysToAdd));
+    addIfNonNull('groundOverlaysToChange',
+        serializeGroundOverlaySet(groundOverlaysToChange));
+    addIfNonNull(
+        'groundOverlayIdsToRemove',
+        groundOverlayIdsToRemove
+            .map<dynamic>((GroundOverlayId m) => m.value)
+            .toList());
 
     return updateMap;
   }
@@ -93,15 +111,16 @@ class GroundOverlayUpdates {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final GroundOverlayUpdates typedOther = other;
+    final GroundOverlayUpdates typedOther = other as GroundOverlayUpdates;
     return setEquals(groundOverlaysToAdd, typedOther.groundOverlaysToAdd) &&
-        setEquals(groundOverlayIdsToRemove, typedOther.groundOverlayIdsToRemove) &&
+        setEquals(
+            groundOverlayIdsToRemove, typedOther.groundOverlayIdsToRemove) &&
         setEquals(groundOverlaysToChange, typedOther.groundOverlaysToChange);
   }
 
   @override
-  int get hashCode =>
-      hashValues(groundOverlaysToAdd, groundOverlayIdsToRemove, groundOverlaysToChange);
+  int get hashCode => hashValues(
+      groundOverlaysToAdd, groundOverlayIdsToRemove, groundOverlaysToChange);
 
   @override
   String toString() {

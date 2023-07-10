@@ -159,6 +159,18 @@ class GoogleMapController {
         .clearTileCache(tileOverlayId, mapId: mapId);
   }
 
+  /// Updates ground overlay configuration.
+  ///
+  /// Change listeners are notified once the update has been made on the
+  /// platform side.
+  ///
+  /// The returned [Future] completes after listeners have been notified.
+  Future<void> _updateGroundOverlays(
+      GroundOverlayUpdates groundOverlayUpdates) {
+    return GoogleMapsFlutterPlatform.instance
+        .updateGroundOverlays(groundOverlayUpdates, mapId: mapId);
+  }
+
   /// Starts an animated change of the map camera position.
   ///
   /// The returned [Future] completes after the change has been started on the

@@ -156,6 +156,20 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('clearTileCache() has not been implemented.');
   }
 
+  /// Updates ground overlay configuration.
+  ///
+  /// Change listeners are notified once the update has been made on the
+  /// platform side.
+  ///
+  /// The returned [Future] completes after listeners have been notified.
+  Future<void> updateGroundOverlays(
+    GroundOverlayUpdates groundOverlayUpdates, {
+    required int mapId,
+  }) {
+    throw UnimplementedError(
+        'updateGroundOverlays() has not been implemented.');
+  }
+
   /// Starts an animated change of the map camera position.
   ///
   /// The returned [Future] completes after the change has been started on the
@@ -373,6 +387,7 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
     Set<Polyline> polylines = const <Polyline>{},
     Set<Circle> circles = const <Circle>{},
     Set<TileOverlay> tileOverlays = const <TileOverlay>{},
+    Set<GroundOverlay> groundOverlays = const <GroundOverlay>{},
     Set<Factory<OneSequenceGestureRecognizer>>? gestureRecognizers =
         const <Factory<OneSequenceGestureRecognizer>>{},
     // TODO(stuartmorgan): Replace with a structured type that's part of the
@@ -403,6 +418,7 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
     Set<Polyline> polylines = const <Polyline>{},
     Set<Circle> circles = const <Circle>{},
     Set<TileOverlay> tileOverlays = const <TileOverlay>{},
+    Set<GroundOverlay> groundOverlays = const <GroundOverlay>{},
     Map<String, dynamic> mapOptions = const <String, dynamic>{},
   }) {
     return buildView(
@@ -414,6 +430,7 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
       polylines: polylines,
       circles: circles,
       tileOverlays: tileOverlays,
+      groundOverlays: groundOverlays,
       gestureRecognizers: gestureRecognizers,
       mapOptions: mapOptions,
     );
@@ -437,6 +454,7 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
       polylines: mapObjects.polylines,
       circles: mapObjects.circles,
       tileOverlays: mapObjects.tileOverlays,
+      groundOverlays: mapObjects.groundOverlays,
       gestureRecognizers: widgetConfiguration.gestureRecognizers,
       mapOptions: jsonForMapConfiguration(mapConfiguration),
     );

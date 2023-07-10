@@ -11,7 +11,7 @@ import 'types.dart';
 @immutable
 class GroundOverlayId {
   /// Creates an immutable identifier for a [GroundOverlay].
-  GroundOverlayId(this.value) : assert(value != null);
+  const GroundOverlayId(this.value);
 
   /// value of the [GroundOverlayId].
   final String value;
@@ -20,7 +20,7 @@ class GroundOverlayId {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final GroundOverlayId typedOther = other;
+    final GroundOverlayId typedOther = other as GroundOverlayId;
     return value == typedOther.value;
   }
 
@@ -42,38 +42,29 @@ class GroundOverlay {
   /// 2. Using [width], [width]
   /// 3. Using [LatLngBounds]
   const GroundOverlay(
-      {@required this.groundOverlayId,
-        this.consumeTapEvents = false,
-        this.location,
-        this.zIndex = 0,
-        this.onTap,
-        this.visible = true,
-        this.bitmapDescriptor,
-        this.bounds,
-        this.width,
-        this.height,
-        this.bearing,
-        this.anchor,
-        this.transparency})
+      {required this.groundOverlayId,
+      this.consumeTapEvents = false,
+      required this.location,
+      this.zIndex = 0,
+      required this.onTap,
+      this.visible = true,
+      required this.bitmapDescriptor,
+      required this.bounds,
+      required this.width,
+      required this.height,
+      required this.bearing,
+      required this.anchor,
+      required this.transparency})
       : assert(
-  (height != null &&
-      width != null &&
-      location != null &&
-      bounds == null) ||
-      (height == null &&
-          width == null &&
-          location == null &&
-          bounds != null) ||
-      (height == null &&
-          width != null &&
-          location != null &&
-          bounds == null) ||
-      (height == null &&
-          width == null &&
-          location == null &&
-          bounds == null),
-  "Only one of the three types of positioning is allowed, please refer "
-      "to the https://developers.google.com/maps/documentation/android-sdk/groundoverlay#add_an_overlay");
+            (bounds == null) ||
+                (height == null && width == null && location == null) ||
+                (height == null && bounds == null) ||
+                (height == null &&
+                    width == null &&
+                    location == null &&
+                    bounds == null),
+            "Only one of the three types of positioning is allowed, please refer "
+            "to the https://developers.google.com/maps/documentation/android-sdk/groundoverlay#add_an_overlay");
 
   /// Uniquely identifies a [GroundOverlay].
   final GroundOverlayId groundOverlayId;
@@ -123,22 +114,21 @@ class GroundOverlay {
   /// A latitude/longitude alignment of the ground overlay.
   final LatLngBounds bounds;
 
-
   /// Creates a new [GroundOverlay] object whose values are the same as this instance,
   /// unless overwritten by the specified parameters.
   GroundOverlay copyWith({
-    BitmapDescriptor bitmapDescriptorParam,
-    Offset anchorParam,
-    int zIndexParam,
-    bool visibleParam,
-    bool consumeTapEventsParam,
-    double widthParam,
-    double heightParam,
-    double bearingParam,
-    LatLng locationParam,
-    LatLngBounds boundsParam,
-    VoidCallback onTapParam,
-    double transparencyParam,
+    BitmapDescriptor? bitmapDescriptorParam,
+    Offset? anchorParam,
+    int? zIndexParam,
+    bool? visibleParam,
+    bool? consumeTapEventsParam,
+    double? widthParam,
+    double? heightParam,
+    double? bearingParam,
+    LatLng? locationParam,
+    LatLngBounds? boundsParam,
+    VoidCallback? onTapParam,
+    double? transparencyParam,
   }) {
     return GroundOverlay(
         groundOverlayId: groundOverlayId,
@@ -160,7 +150,7 @@ class GroundOverlay {
   GroundOverlay clone() => copyWith();
 
   /// Converts this object to something serializable in JSON.
-  dynamic toJson() {
+  Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = <String, dynamic>{};
 
     void addIfPresent(String fieldName, dynamic value) {
@@ -180,9 +170,7 @@ class GroundOverlay {
     addIfPresent('bounds', bounds?.toJson());
     addIfPresent('bitmap', bitmapDescriptor?.toJson());
     addIfPresent('width', width);
-    if (location != null) {
-      json['location'] = _locationToJson();
-    }
+    json['location'] = _locationToJson();
     return json;
   }
 
@@ -190,7 +178,7 @@ class GroundOverlay {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other.runtimeType != runtimeType) return false;
-    final GroundOverlay typedOther = other;
+    final GroundOverlay typedOther = other as GroundOverlay;
     return groundOverlayId == typedOther.groundOverlayId &&
         bitmapDescriptor == typedOther.bitmapDescriptor &&
         consumeTapEvents == typedOther.consumeTapEvents &&
