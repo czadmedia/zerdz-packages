@@ -44,14 +44,14 @@ class GroundOverlay {
   const GroundOverlay(
       {required this.groundOverlayId,
       this.consumeTapEvents = false,
-      required this.location,
+      this.location,
       this.zIndex = 0,
       required this.onTap,
       this.visible = true,
-      required this.bitmapDescriptor,
-      required this.bounds,
-      required this.width,
-      required this.height,
+      this.bitmapDescriptor,
+      this.bounds,
+      this.width,
+      this.height,
       required this.bearing,
       required this.anchor,
       required this.transparency})
@@ -75,7 +75,7 @@ class GroundOverlay {
   final bool consumeTapEvents;
 
   /// Geographical location of the center of the ground overlay.
-  final LatLng location;
+  final LatLng? location;
 
   /// True if the ground overlay is visible.
   final bool visible;
@@ -91,13 +91,13 @@ class GroundOverlay {
   final VoidCallback onTap;
 
   /// A description of the bitmap used to draw the ground overlay image.
-  final BitmapDescriptor bitmapDescriptor;
+  final BitmapDescriptor? bitmapDescriptor;
 
   /// Width of the ground overlay in meters
-  final double width;
+  final double? width;
 
   /// Height of the ground overlay in meters
-  final double height;
+  final double? height;
 
   /// The amount that the image should be rotated in a clockwise direction.
   /// The center of the rotation will be the image's anchor.
@@ -112,7 +112,7 @@ class GroundOverlay {
   final double transparency;
 
   /// A latitude/longitude alignment of the ground overlay.
-  final LatLngBounds bounds;
+  final LatLngBounds? bounds;
 
   /// Creates a new [GroundOverlay] object whose values are the same as this instance,
   /// unless overwritten by the specified parameters.
@@ -197,7 +197,7 @@ class GroundOverlay {
   @override
   int get hashCode => groundOverlayId.hashCode;
 
-  dynamic _locationToJson() => location.toJson();
+  dynamic _locationToJson() => location?.toJson();
 
   dynamic _offsetToJson(Offset offset) {
     if (offset == null) {

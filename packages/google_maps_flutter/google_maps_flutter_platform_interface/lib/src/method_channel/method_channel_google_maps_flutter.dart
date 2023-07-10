@@ -157,6 +157,11 @@ class MethodChannelGoogleMapsFlutter extends GoogleMapsFlutterPlatform {
   }
 
   @override
+  Stream<GroundOverlayTapEvent> onGroundOverlayTap({required int mapId}) {
+    return _events(mapId).whereType<GroundOverlayTapEvent>();
+  }
+
+  @override
   Stream<MapTapEvent> onTap({required int mapId}) {
     return _events(mapId).whereType<MapTapEvent>();
   }
@@ -238,6 +243,13 @@ class MethodChannelGoogleMapsFlutter extends GoogleMapsFlutterPlatform {
         _mapEventStreamController.add(CircleTapEvent(
           mapId,
           CircleId(arguments['circleId']! as String),
+        ));
+        break;
+      case 'groundOverlay#onTap':
+        final Map<String, Object?> arguments = _getArgumentDictionary(call);
+        _mapEventStreamController.add(GroundOverlayTapEvent(
+          mapId,
+          GroundOverlayId(arguments['groundOverlayId']! as String),
         ));
         break;
       case 'map#onTap':
@@ -369,6 +381,17 @@ class MethodChannelGoogleMapsFlutter extends GoogleMapsFlutterPlatform {
         .invokeMethod<void>('tileOverlays#clearTileCache', <String, Object>{
       'tileOverlayId': tileOverlayId.value,
     });
+  }
+
+  @override
+  Future<void> updateGroundOverlays(
+    GroundOverlayUpdates groundOverlayUpdates, {
+    required int mapId,
+  }) {
+    return channel(mapId).invokeMethod<void>(
+      'groundOverlays#update',
+      groundOverlayUpdates.toJson(),
+    );
   }
 
   @override
