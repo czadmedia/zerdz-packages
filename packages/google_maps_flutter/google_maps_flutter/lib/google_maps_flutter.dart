@@ -25,6 +25,8 @@ export 'package:google_maps_flutter_platform_interface/google_maps_flutter_platf
         Cap,
         Circle,
         CircleId,
+        GroundOverlay,
+        GroundOverlayId,
         InfoWindow,
         JointType,
         LatLng,
