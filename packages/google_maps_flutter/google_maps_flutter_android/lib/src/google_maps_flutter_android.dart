@@ -172,6 +172,11 @@ class GoogleMapsFlutterAndroid extends GoogleMapsFlutterPlatform {
   }
 
   @override
+  Stream<CircleTapEvent> onCircleTap({required int mapId}) {
+    return _events(mapId).whereType<CircleTapEvent>();
+  }
+
+  @override
   Stream<MapTapEvent> onTap({required int mapId}) {
     return _events(mapId).whereType<MapTapEvent>();
   }
