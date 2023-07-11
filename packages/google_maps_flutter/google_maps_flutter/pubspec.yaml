@@ -25,22 +25,22 @@ dependencies:
   google_maps_flutter_android:
     git:
       url: git@github.com:czadmedia/zerdz-packages.git
-      ref: 1.0.6
+      ref: 1.0.7
       path: packages/google_maps_flutter/google_maps_flutter_android
   google_maps_flutter_ios:
     git:
       url: git@github.com:czadmedia/zerdz-packages.git
-      ref: 1.0.6
+      ref: 1.0.7
       path: packages/google_maps_flutter/google_maps_flutter_ios
   google_maps_flutter_platform_interface:
     git:
       url: git@github.com:czadmedia/zerdz-packages.git
-      ref: 1.0.6
+      ref: 1.0.7
       path: packages/google_maps_flutter/google_maps_flutter_platform_interface
   google_maps_flutter_web:
     git:
       url: git@github.com:czadmedia/zerdz-packages.git
-      ref: 1.0.6
+      ref: 1.0.7
       path: packages/google_maps_flutter/google_maps_flutter_web
 
 dev_dependencies:

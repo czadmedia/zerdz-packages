@@ -23,7 +23,7 @@ dependencies:
   google_maps_flutter_platform_interface:
     git:
       url: git@github.com:czadmedia/zerdz-packages.git
-      ref: 1.0.6
+      ref: 1.0.7
       path: packages/google_maps_flutter/google_maps_flutter_platform_interface
   stream_transform: ^2.0.0
 
