@@ -95,12 +95,11 @@ class PlaceGroundOverlayBodyState extends State<PlaceGroundOverlayBody> {
     final bitMapDesc = _bitMapDesc;
 
     if (bitMapDesc != null) {
-      final GroundOverlay groundOverlay = GroundOverlay(
+      final GroundOverlay groundOverlay = GroundOverlay.fromBounds(
+        bounds,
         groundOverlayId: groundOverlayId,
-        bounds: bounds,
-        bitmapDescriptor: bitMapDesc,
+        bitmap: _bitMapDesc,
         consumeTapEvents: true,
-        location: ll,
         onTap: () {
           _onPolygonTapped(groundOverlayId);
         },

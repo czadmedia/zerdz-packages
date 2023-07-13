@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
+import 'package:google_maps_flutter_example/place_ground_overlay.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 
 import 'animate_camera.dart';
@@ -35,6 +36,7 @@ final List<GoogleMapExampleAppPage> _allPages = <GoogleMapExampleAppPage>[
   const PlacePolylinePage(),
   const PlacePolygonPage(),
   const PlaceCirclePage(),
+  const PlaceGroundOverlayPage(),
   const PaddingPage(),
   const SnapshotPage(),
   const LiteModePage(),
