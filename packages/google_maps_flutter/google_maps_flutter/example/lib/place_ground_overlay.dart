@@ -7,7 +7,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-
 class PlaceGroundOverlayScreen extends StatelessWidget {
   const PlaceGroundOverlayScreen({Key? key}) : super(key: key);
 
@@ -19,7 +18,6 @@ class PlaceGroundOverlayScreen extends StatelessWidget {
     );
   }
 }
-
 
 class PlaceGroundOverlayBody extends StatefulWidget {
   const PlaceGroundOverlayBody();
