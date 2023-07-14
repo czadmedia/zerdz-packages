@@ -502,11 +502,8 @@ class _GoogleMapState extends State<GoogleMap> {
     }
   }
 
-  void onGroundOverlayTap(GroundOverlayId groundOverlayId) {
-    if (_groundOverlays[groundOverlayId]?.onTap != null) {
-      _groundOverlays[groundOverlayId]?.onTap();
-    }
-  }
+  void onGroundOverlayTap(GroundOverlayId groundOverlayId) =>
+      _groundOverlays[groundOverlayId]?.onTap?.call();
 
   void onInfoWindowTap(MarkerId markerId) {
     final Marker? marker = _markers[markerId];
