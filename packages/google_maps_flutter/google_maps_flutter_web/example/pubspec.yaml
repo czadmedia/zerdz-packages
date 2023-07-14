@@ -12,12 +12,12 @@ dependencies:
   google_maps_flutter_platform_interface:
     git:
       url: git@github.com:czadmedia/zerdz-packages.git
-      ref: 1.0.11
+      ref: 1.0.12
       path: packages/google_maps_flutter/google_maps_flutter_platform_interface
   google_maps_flutter_web:
     git:
       url: git@github.com:czadmedia/zerdz-packages.git
-      ref: 1.0.11
+      ref: 1.0.12
       path: packages/google_maps_flutter/google_maps_flutter_web
 
 dev_dependencies:
@@ -28,7 +28,7 @@ dev_dependencies:
   google_maps_flutter:
     git:
       url: git@github.com:czadmedia/zerdz-packages.git
-      ref: 1.0.11
+      ref: 1.0.12
       path: packages/google_maps_flutter/google_maps_flutter
   http: ">=0.13.0 <2.0.0"
   integration_test:
