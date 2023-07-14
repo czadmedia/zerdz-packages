@@ -7,16 +7,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import 'page.dart';
 
-class PlaceGroundOverlayPage extends GoogleMapExampleAppPage {
-  PlaceGroundOverlayPage() : super(const Icon(Icons.image), 'Place image');
+class PlaceGroundOverlayScreen extends StatelessWidget {
+  const PlaceGroundOverlayScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const PlaceGroundOverlayBody();
+    return Scaffold(
+      appBar: AppBar(),
+      body: const PlaceGroundOverlayBody(),
+    );
   }
 }
+
 
 class PlaceGroundOverlayBody extends StatefulWidget {
   const PlaceGroundOverlayBody();
@@ -53,7 +56,7 @@ class PlaceGroundOverlayBodyState extends State<PlaceGroundOverlayBody> {
   Future<void> _createGroundOverlayImageFromAsset(BuildContext context) async {
     if (_bitMapDesc == null) {
       final ImageConfiguration imageConfiguration =
-          createLocalImageConfiguration(context, size: Size.square(48));
+          createLocalImageConfiguration(context, size: const Size.square(48));
       await BitmapDescriptor.fromAssetImage(
         imageConfiguration,
         'assets/red_square.png',
@@ -78,10 +81,10 @@ class PlaceGroundOverlayBodyState extends State<PlaceGroundOverlayBody> {
 
   void _add() {
     LatLngBounds bounds = LatLngBounds(
-        southwest: LatLng(51.088327, 71.394807),
-        northeast: LatLng(51.089432, 71.395880));
+        southwest: const LatLng(51.088327, 71.394807),
+        northeast: const LatLng(51.089432, 71.395880));
     final int polygonCount = groundOverlays.length;
-    var ll = LatLng(51.088327, 71.394807);
+    var ll = const LatLng(51.088327, 71.394807);
 
     if (polygonCount == 12) {
       return;
