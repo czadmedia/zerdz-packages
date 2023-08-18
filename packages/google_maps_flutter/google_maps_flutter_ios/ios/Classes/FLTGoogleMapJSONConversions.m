@@ -61,6 +61,13 @@
   };
 }
 
++ (GMSCoordinateBounds *)toLatLngBounds:(NSArray *)data {
+  CLLocationCoordinate2D ne = toLocation:data[0];
+  CLLocationCoordinate2D sw = toLocation:data[1];
+
+  return [[GMSCoordinateBounds alloc] initWithCoordinate:ne coordinate:sw];
+}
+
 + (NSDictionary<NSString *, NSNumber *> *)dictionaryFromPoint:(CGPoint)point {
   return @{
     @"x" : @(lroundf(point.x)),
