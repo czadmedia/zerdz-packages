@@ -68,27 +68,27 @@
 }
 @end
 
-static int ToInt(NSNumber* data) { return [FLTGoogleMapJsonConversions toInt:data]; }
+static int ToInt(NSNumber* data) { return [FLTGoogleMapJSONConversions toInt:data]; }
 
-static BOOL ToBool(NSNumber* data) { return [FLTGoogleMapJsonConversions toBool:data]; }
+static BOOL ToBool(NSNumber* data) { return [FLTGoogleMapJSONConversions toBool:data]; }
 
-static double ToDouble(NSNumber* data) { return [FLTGoogleMapJsonConversions toDouble:data]; }
+static double ToDouble(NSNumber* data) { return [FLTGoogleMapJSONConversions toDouble:data]; }
 
-static float ToFloat(NSNumber* data) { return [FLTGoogleMapJsonConversions toFloat:data]; }
+static float ToFloat(NSNumber* data) { return [FLTGoogleMapJSONConversions toFloat:data]; }
 
 static CLLocationCoordinate2D ToLocation(NSArray* data) {
-  return [FLTGoogleMapJsonConversions toLocation:data];
+  return [FLTGoogleMapJSONConversions toLocation:data];
 }
 
 static GMSCoordinateBounds ToLatLngBounds(NSArray* data) {
-  return [FLTGoogleMapJsonConversions toLatLngBounds:data];
+  return [FLTGoogleMapJSONConversions toLatLngBounds:data];
 }
 
 static CLLocationDistance ToDistance(NSNumber* data) {
-  return [FLTGoogleMapJsonConversions toFloat:data];
+  return [FLTGoogleMapJSONConversions toFloat:data];
 }
 
-static UIColor* ToColor(NSNumber* data) { return [FLTGoogleMapJsonConversions toColor:data]; }
+static UIColor* ToColor(NSNumber* data) { return [FLTGoogleMapJSONConversions toColor:data]; }
 
 static void InterpretGroundOverlayOptions(NSDictionary* data, id<FLTGoogleMapGroundOverlayOptionsSink> sink,
                                    NSObject<FlutterPluginRegistrar>* registrar) {
