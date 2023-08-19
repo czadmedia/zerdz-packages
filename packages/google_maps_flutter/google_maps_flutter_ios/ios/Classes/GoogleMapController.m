@@ -147,7 +147,7 @@
     }
     id groundOverlaysToAdd = args[@"groundOverlaysToAdd"];
     if ([groundOverlaysToAdd isKindOfClass:[NSArray class]]) {
-      [_groundOverlaysToAdd addGroundOverlays:groundOverlaysToAdd];
+      [_groundOverlaysController addGroundOverlays:groundOverlaysToAdd];
     }
 
     [_mapView addObserver:self forKeyPath:@"frame" options:0 context:nil];
