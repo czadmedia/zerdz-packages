@@ -61,11 +61,10 @@
   };
 }
 
-+ (GMSCoordinateBounds *)toLatLngBounds:(NSArray *)data {
-  CLLocationCoordinate2D ne = toLocation:data[0];
-  CLLocationCoordinate2D sw = toLocation:data[1];
-
-  return [[GMSCoordinateBounds alloc] initWithCoordinate:ne coordinate:sw];
++ (GMSCoordinateBounds *)toLatLngBounds:(NSArray *)latlongs {
+  return [[GMSCoordinateBounds alloc]
+      initWithCoordinate:[FLTGoogleMapJSONConversions locationFromLatLong:latlongs[0]]
+              coordinate:[FLTGoogleMapJSONConversions locationFromLatLong:latlongs[1]]];
 }
 
 + (NSDictionary<NSString *, NSNumber *> *)dictionaryFromPoint:(CGPoint)point {
