@@ -74,8 +74,8 @@ static UIImage* ExtractBitmapDescriptor(NSObject<FlutterPluginRegistrar>* regist
 - (void)setBearing:(CLLocationDirection)bearing {
   _groundOverlay.bearing = bearing;
 }
-- (void)setTransparency:(float)transparency {
-  _groundOverlay.opacity = transparency;
+- (void)setOpacity:(float)opacity {
+  _groundOverlay.opacity = opacity;
 }
 @end
 
