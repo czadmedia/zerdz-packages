@@ -112,7 +112,8 @@ static void InterpretGroundOverlayOptions(NSDictionary* data, id<FLTGoogleMapGro
   }
   NSNumber* transparency = data[@"transparency"];
   if (transparency != nil) {
-    [sink setTransparency:ToFloat(transparency)];
+    float opacity = 1 - ToFloat(transparency);
+    [sink setOpacity:opacity];
   }
   NSNumber* width = data[@"width"];
   NSNumber* height = data[@"height"];

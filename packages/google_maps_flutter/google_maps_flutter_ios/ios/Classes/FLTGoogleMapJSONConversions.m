@@ -147,4 +147,26 @@
   }
   return nil;
 }
+
++ (bool)toBool:(NSNumber*)data {
+  return data.boolValue;
+}
+
++ (int)toInt:(NSNumber*)data {
+  return data.intValue;
+}
+
++ (double)toDouble:(NSNumber*)data {
+  return data.doubleValue;
+}
+
++ (float)toFloat:(NSNumber*)data {
+  return data.floatValue;
+}
+
++ (CLLocationCoordinate2D)toLocation:(NSArray*)data {
+  return CLLocationCoordinate2DMake([FLTGoogleMapJSONConversions toDouble:data[0]],
+                                    [FLTGoogleMapJSONConversions toDouble:data[1]]);
+}
+
 @end
