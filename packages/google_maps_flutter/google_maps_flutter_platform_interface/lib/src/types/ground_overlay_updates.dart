@@ -119,7 +119,7 @@ class GroundOverlayUpdates {
   }
 
   @override
-  int get hashCode => hashValues(
+  int get hashCode => Object.hash(
       groundOverlaysToAdd, groundOverlayIdsToRemove, groundOverlaysToChange);
 
   @override
